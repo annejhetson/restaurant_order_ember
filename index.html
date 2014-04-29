@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurant Orders</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+   <div class="container">
+    <h1>Order</h1>
+    <hr>
+    <script type="text/x-handlebars" data-template-name="foods">
+      <ul>
+        {{#each food in controller}}
+          <div class="food">
+            <li class="food-name">{{food.name}}</li>
+            <li>{{food.description}}</li>
+            <li>${{food.price}}</li>
+          </div>
+        {{/each}}
+      </ul>
+
+      <h3>New Food</h3>
+
+        <div class="form-group table-form">
+          <label for="name">Food Name</label>
+          {{input type="text" class="form-control" id="name" placeholder="Coconut..." value=newFoodName}}
+        </div>
+        <div class="form-group">
+          <label for="description">Food Description</label>
+          {{input type="text" class="form-control" id="description" placeholder="Tropical Fruit..." value=newFoodDescription}}
+        </div>
+        <div class="form-group">
+          <label for="price">Food Price</label>
+          {{input type="text" class="form-control" id="price" placeholder="100.00" value=newFoodPrice}}
+        </div>
+        <button {{action createFood}} class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="tables">
+      <div class="col-md-4 tables">
+        <h2>Tables</h2>
+        {{#each table in controller}}
+          <div class="col-md-3 table">
+            {{#link-to 'table' table}}{{table.name}}{{/link-to}}
+          </div>
+        {{/each}}
+
+        <div class="add-food">
+          {{#link-to 'foods'}}Add Food{{/link-to}}
+        </div>
+
+        <h3>New Table</h3>
+        <div class="form-group table-form">
+        <label>PLEASE ENTER A NUMBER</label>
+        {{input type="text" class="form-control" id="new-table" placeholder="Table Name" value=newTableNumber action="createTable"}}
+
+        </div>
+      </div>
+
+      <div class="col-md-4 foods">
+        <h2>Food</h2>
+        {{outlet}}
+      </div>
+    </script>
+
+
+
+    <script type="text/x-handlebars" data-template-name="orders">
+      <div class="col-md-8">
+        <h2>Select a table at left</h2>
+
+        <div class="col-md-7">
+          {{#each}}
+            <div class="col-md-6">
+              {{item}}
+            </div>
+            <div class="col-md-6">
+              ${{price}}
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    </script>
+
+  <script src="js/libs/jquery-1.11.0.js"></script>
+  <script src="js/libs/handlebars-1.1.2.js"></script>
+  <script src="js/libs/ember-1.5.1.js"></script>
+  <script src="js/libs/ember-data.js"></script>
+  <script src="js/application.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/models/order.js"></script>
+  <script src="js/controllers/orders_controller.js"></script>
+  <script src="js/controllers/tables_controller.js"></script>
+  <script src="js/controllers/foods_controller.js"></script>
+  <script src="js/controllers/application_controller.js"></script>
+
+
+ </div>
+</body>
+</html>

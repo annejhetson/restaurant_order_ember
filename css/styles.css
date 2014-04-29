@@ -1,0 +1,48 @@
+.tables {
+  border-right: solid;
+  border-width: 1px;
+}
+
+.table {
+  font-size: 40px;
+  color: white;
+  background-color: gray;
+  text-align: center;
+  border-radius: 25px;
+  width: 45%;
+  margin: 5px;
+}
+
+.table a {
+  color: white;
+  text-decoration: none;
+}
+
+.add-food a {
+  font-size: 40px;
+  color: white;
+  background-color: green;
+  text-align: center;
+  border-radius: 25px;
+  width: 45%;
+  margin: 5px;
+  text-decoration: none;
+}
+
+.table-form {
+  margin-top: 40px;
+}
+
+.food {
+  background-color: purple;
+  color: white;
+  font-size: 18px;
+  margin: 5px;
+  padding-left: 10px;
+}
+
+.food-name {
+  font-size: 30px;
+  text-decoration: underline;
+}
+
