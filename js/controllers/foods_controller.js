@@ -1,4 +1,7 @@
 Orders.FoodsController = Ember.ArrayController.extend({
+  needs: "table",
+  table: Ember.computed.alias("controllers.table"),
+
   actions: {
     createFood: function() {
       var name = this.get('newFoodName')
@@ -16,6 +19,12 @@ Orders.FoodsController = Ember.ArrayController.extend({
       this.set('newFoodPrice', '');
 
       food.save();
+    },
+
+    addFood: function(food) {
+      var table = this.get('table').get('model');
+      table.get('foods').pushObject(food);
     }
   }
+
 });

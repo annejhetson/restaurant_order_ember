@@ -1,59 +1,35 @@
-// Orders.Order = DS.Model.extend({
-//   foods: DS.hasMany('food'),
-//   item: DS.attr('string'),
-//   price: DS.attr('float')
-// });
-
 Orders.Food = DS.Model.extend({
   name: DS.attr('string'),
   description: DS.attr('string'),
-  price: DS.attr('number')
+  price: DS.attr('number'),
+  tables: DS.hasMany('table', {async: true})
 });
-
-// Orders.Ticket = DS.Model.extend({
-//   table_id: DS.attr('integer')
-// });
 
 Orders.Table = DS.Model.extend({
   name: DS.attr('string'),
-  foods: DS.hasMany('food')
+  foods: DS.hasMany('food', {async: true})
 });
-
-
-// Orders.Order.FIXTURES = [
-//   {
-//     id: 1,
-//     food_id: 2,
-//     ticket_id: 1
-//   },
-//   {
-//     id: 2,
-//     food_id: 1,
-//     ticket_id: 2
-//   },
-//   {
-//     id: 3,
-//     food_id: 3,
-//     ticket_id: 3
-//   }
-// ];
 
 Orders.Table.FIXTURES = [
   {
     id: 1,
-    name: "Fire"
+    name: "Fire",
+    foods: [1, 2] 
   },
   {
     id: 2,
-    name: "Water"
+    name: "Water",
+    foods: [2, 2] 
   },
   {
     id: 3,
-    name: "Air"
+    name: "Air",
+    foods: [1, 3, 2] 
   },
   {
     id: 4,
-    name: "Earth"
+    name: "Earth",
+    foods: [1] 
   }
 ];
 
@@ -77,18 +53,3 @@ Orders.Food.FIXTURES = [
     price: 3.0
   }
 ];
-
-// Orders.Ticket.FIXTURES = [
-// {
-//     id: 1,
-//     table_id: 1
-//   },
-//   {
-//     id: 2,
-//     table_id: 1
-//   },
-//   {
-//     id: 3,
-//     table_id: 3
-//   }
-// ];

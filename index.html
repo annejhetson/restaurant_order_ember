@@ -11,34 +11,32 @@
     <h1>Order</h1>
     <hr>
     <script type="text/x-handlebars" data-template-name="foods">
+
+      <h1>Add food to Table: {{controller.table.id}}</h1>
+
       <ul>
-        {{#each food in controller}}
-          <div class="food">
-            <li class="food-name">{{food.name}}</li>
-            <li>{{food.description}}</li>
-            <li>${{food.price}}</li>
-          </div>
+        {{#each food in controller }}
+          <button {{action addFood food }}
+                  class="btn btn-success btn-xs">
+                  Add {{food.name}}
+          </button>
         {{/each}}
       </ul>
-
-      <h3>New Food</h3>
-
-        <div class="form-group table-form">
-          <label for="name">Food Name</label>
-          {{input type="text" class="form-control" id="name" placeholder="Coconut..." value=newFoodName}}
-        </div>
-        <div class="form-group">
-          <label for="description">Food Description</label>
-          {{input type="text" class="form-control" id="description" placeholder="Tropical Fruit..." value=newFoodDescription}}
-        </div>
-        <div class="form-group">
-          <label for="price">Food Price</label>
-          {{input type="text" class="form-control" id="price" placeholder="100.00" value=newFoodPrice}}
-        </div>
-        <button {{action createFood}} class="btn btn-primary">Submit</button>
-        </div>
-      </div>
     </script>
+
+    <script type="text/x-handlebars" data-template-name="table">
+      <div class="col-md-4">
+        <h2>Table# {{id}}</h2>
+      </div>
+
+      {{#link-to 'foods'}}Place Orders{{/link-to}}
+      {{#each food in model.foods}}
+        <p>{{food.name}} from model</p>
+      {{/each}}
+      {{outlet}}
+
+    </script>
+
 
     <script type="text/x-handlebars" data-template-name="tables">
       <div class="col-md-4 tables">
@@ -49,40 +47,17 @@
           </div>
         {{/each}}
 
-        <div class="add-food">
-          {{#link-to 'foods'}}Add Food{{/link-to}}
-        </div>
-
         <h3>New Table</h3>
         <div class="form-group table-form">
         <label>PLEASE ENTER A NUMBER</label>
         {{input type="text" class="form-control" id="new-table" placeholder="Table Name" value=newTableNumber action="createTable"}}
-
         </div>
       </div>
 
-      <div class="col-md-4 foods">
-        <h2>Food</h2>
+      <p>{{#link-to 'foods' class="btn btn-primary"}}View Menu{{/link-to}}</p>
+
+      <div class="col-md-8 foods">
         {{outlet}}
-      </div>
-    </script>
-
-
-
-    <script type="text/x-handlebars" data-template-name="orders">
-      <div class="col-md-8">
-        <h2>Select a table at left</h2>
-
-        <div class="col-md-7">
-          {{#each}}
-            <div class="col-md-6">
-              {{item}}
-            </div>
-            <div class="col-md-6">
-              ${{price}}
-            </div>
-          {{/each}}
-        </div>
       </div>
     </script>
 
@@ -95,6 +70,7 @@
   <script src="js/models/order.js"></script>
   <script src="js/controllers/orders_controller.js"></script>
   <script src="js/controllers/tables_controller.js"></script>
+  <script src="js/controllers/table_controller.js"></script>
   <script src="js/controllers/foods_controller.js"></script>
   <script src="js/controllers/application_controller.js"></script>
 
